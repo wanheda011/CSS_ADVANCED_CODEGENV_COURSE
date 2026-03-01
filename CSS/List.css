@@ -1,0 +1,576 @@
+/* ===========================================
+   CSS LIST PROPERTIES - ADVANCED GUIDE
+   ===========================================
+
+   CSS list properties control the appearance and behavior of list markers
+   (bullets, numbers, etc.) in ordered and unordered lists.
+
+   LIST PROPERTIES COVERED:
+   1. list-style-type - Marker type (disc, decimal, etc.)
+   2. list-style-image - Custom image markers
+   3. list-style-position - Marker position (inside/outside)
+   4. list-style - Shorthand property
+
+   BEST PRACTICES:
+   - Use semantic HTML (<ol> for ordered, <ul> for unordered)
+   - Choose appropriate marker types for content hierarchy
+   - Consider accessibility (screen readers, keyboard navigation)
+   - Use list-style-position: inside for better text flow
+   - Provide fallbacks for custom images
+   - Test across different browsers and devices
+   =========================================== */
+
+/* ===========================================
+   1. LIST-STYLE-TYPE - MARKER TYPES
+   ===========================================
+
+   Specifies the type of marker used for list items.
+   Different types for different content types and hierarchies.
+
+   UNORDERED LIST TYPES:
+   - disc (●) - Default filled circle
+   - circle (○) - Hollow circle
+   - square (■) - Filled square
+   - none - No marker
+
+   ORDERED LIST TYPES:
+   - decimal (1, 2, 3) - Numbers
+   - decimal-leading-zero (01, 02, 03)
+   - lower-alpha (a, b, c) - Lowercase letters
+   - upper-alpha (A, B, C) - Uppercase letters
+   - lower-roman (i, ii, iii) - Lowercase roman
+   - upper-roman (I, II, III) - Uppercase roman
+
+   BEST PRACTICES:
+   - Use disc/circle/square for unordered lists
+   - Use decimal for ordered sequences
+   - Use alpha/roman for subsections
+   - Consider content type and hierarchy
+   =========================================== */
+
+/* Unordered list markers */
+/* BEST: Clear visual hierarchy */
+.default-list {
+    list-style-type: disc;             /* Default filled circle */
+}
+
+.circle-list {
+    list-style-type: circle;           /* Hollow circle */
+}
+
+.square-list {
+    list-style-type: square;           /* Filled square */
+}
+
+/* Ordered list markers */
+/* BEST: Sequential numbering */
+.numeric-list {
+    list-style-type: decimal;          /* 1, 2, 3... */
+}
+
+.zero-padded {
+    list-style-type: decimal-leading-zero; /* 01, 02, 03... */
+}
+
+/* Alphabetical markers */
+/* GOOD: Subsection numbering */
+.alpha-lower {
+    list-style-type: lower-alpha;      /* a, b, c... */
+}
+
+.alpha-upper {
+    list-style-type: upper-alpha;      /* A, B, C... */
+}
+
+/* Roman numeral markers */
+/* ADVANCED: Formal/legal documents */
+.roman-lower {
+    list-style-type: lower-roman;      /* i, ii, iii... */
+}
+
+.roman-upper {
+    list-style-type: upper-roman;      /* I, II, III... */
+}
+
+/* No markers */
+/* GOOD: Custom styling, icon-based lists */
+.no-marker {
+    list-style-type: none;
+}
+
+/* ===========================================
+   2. LIST-STYLE-IMAGE - CUSTOM MARKERS
+   ===========================================
+
+   Uses a custom image as the list marker instead of built-in types.
+   Provides complete control over marker appearance.
+
+   SYNTAX:
+   - list-style-image: url('path/to/image.png');
+   - list-style-image: none;
+
+   BEST PRACTICES:
+   - Use SVG for crisp, scalable markers
+   - Provide fallbacks with list-style-type
+   - Ensure images load quickly
+   - Consider accessibility (alt text, screen readers)
+   - Test with different image formats
+   =========================================== */
+
+/* SVG markers - Scalable and crisp */
+/* BEST: Vector graphics, perfect scaling */
+.svg-marker {
+    list-style-image: url('checkmark.svg');
+}
+
+/* PNG markers with fallback */
+/* GOOD: Fallback strategy */
+.png-marker {
+    list-style-type: disc;             /* Fallback */
+    list-style-image: url('custom-bullet.png');
+}
+
+/* Emoji as markers */
+/* ADVANCED: Fun, but consider accessibility */
+.emoji-marker {
+    list-style-type: '✅';             /* Emoji fallback */
+    list-style-image: url('checkmark-icon.svg');
+}
+
+/* Gradient markers */
+/* ADVANCED: CSS-generated markers */
+.gradient-marker {
+    list-style-type: none;             /* Remove default */
+    position: relative;
+}
+
+.gradient-marker li::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(45deg, #007acc, #00d4aa);
+    border-radius: 50%;
+}
+
+/* ===========================================
+   3. LIST-STYLE-POSITION - MARKER POSITION
+   ===========================================
+
+   Controls whether markers appear inside or outside the list item box.
+
+   VALUES:
+   - outside (default) - Markers outside content flow
+   - inside - Markers inside content flow
+
+   BEST PRACTICES:
+   - Use inside for better text wrapping
+   - Use outside for traditional list appearance
+   - Consider multi-line list items
+   - Test with different content lengths
+   =========================================== */
+
+/* Outside position - Traditional */
+/* BEST: Standard list appearance */
+.outside-position {
+    list-style-position: outside;       /* Default behavior */
+}
+
+/* Inside position - Better wrapping */
+/* BEST: Improved text flow, modern design */
+.inside-position {
+    list-style-position: inside;        /* Markers inside flow */
+}
+
+/* Comparison example */
+.position-comparison li {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+/* ===========================================
+   4. LIST-STYLE - SHORTHAND PROPERTY
+   ===========================================
+
+   Combines list-style-type, list-style-image, and list-style-position
+   in a single declaration.
+
+   SYNTAX:
+   - list-style: type position image;
+   - Order doesn't matter, but type is recommended first
+
+   BEST PRACTICES:
+   - Use shorthand for cleaner code
+   - Maintain consistent order
+   - Include all three properties when using shorthand
+   - Reset with list-style: none;
+   =========================================== */
+
+/* Complete shorthand */
+/* BEST: Clean, comprehensive styling */
+.complete-style {
+    list-style: disc outside url('bullet.svg');
+}
+
+/* Type and position only */
+/* GOOD: Common combinations */
+.type-position {
+    list-style: decimal inside;
+}
+
+/* Image with position */
+/* ADVANCED: Custom markers with positioning */
+.image-position {
+    list-style: url('star.svg') inside;
+}
+
+/* Reset all styles */
+/* BEST: Remove all list styling */
+.reset-style {
+    list-style: none;
+}
+
+/* ===========================================
+   ADVANCED LIST TECHNIQUES
+   ===========================================
+
+   Modern CSS techniques for enhanced list styling.
+
+   BEST PRACTICES:
+   - Use CSS counters for custom numbering
+   - Implement accessible custom markers
+   - Create responsive list layouts
+   - Consider semantic HTML structure
+   =========================================== */
+
+/* CSS counters for custom numbering */
+/* ADVANCED: Complete control over numbering */
+.custom-counter {
+    counter-reset: item-counter;
+    list-style-type: none;             /* Remove default */
+}
+
+.custom-counter li {
+    counter-increment: item-counter;
+    position: relative;
+    padding-left: 2rem;
+}
+
+.custom-counter li::before {
+    content: counter(item-counter, upper-roman) '.';
+    position: absolute;
+    left: 0;
+    color: #007acc;
+    font-weight: bold;
+}
+
+/* Accessible custom markers */
+/* BEST: Screen reader friendly */
+.accessible-custom li {
+    list-style-type: none;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.accessible-custom li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #007acc;
+    font-size: 1.2em;
+}
+
+/* Nested list styling */
+/* ADVANCED: Hierarchical marker progression */
+.nested-lists ul {
+    list-style-type: disc;
+}
+
+.nested-lists ul ul {
+    list-style-type: circle;
+}
+
+.nested-lists ul ul ul {
+    list-style-type: square;
+}
+
+.nested-lists ol {
+    list-style-type: decimal;
+}
+
+.nested-lists ol ol {
+    list-style-type: lower-alpha;
+}
+
+.nested-lists ol ol ol {
+    list-style-type: lower-roman;
+}
+
+/* ===========================================
+   RESPONSIVE LIST DESIGN
+   ===========================================
+
+   List styling that adapts to different screen sizes.
+
+   BEST PRACTICES:
+   - Adjust marker sizes for mobile
+   - Change layouts on different screens
+   - Consider touch targets
+   - Test readability across devices
+   =========================================== */
+
+/* Responsive marker sizing */
+/* BEST: Appropriate sizes for different screens */
+.responsive-markers {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .responsive-markers {
+        padding-left: 1rem;            /* Tighter on mobile */
+        font-size: 0.9rem;             /* Smaller text */
+    }
+}
+
+/* Layout changes */
+/* ADVANCED: Different layouts for different screens */
+.responsive-layout ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    list-style-type: none;
+}
+
+@media (max-width: 768px) {
+    .responsive-layout ul {
+        flex-direction: column;        /* Stack on mobile */
+    }
+}
+
+/* ===========================================
+   ACCESSIBILITY CONSIDERATIONS
+   ===========================================
+
+   List styling that enhances accessibility.
+
+   BEST PRACTICES:
+   - Use semantic HTML (<ol> vs <ul>)
+   - Ensure sufficient contrast for markers
+   - Don't rely on color alone for meaning
+   - Test with screen readers
+   - Maintain keyboard navigation
+   =========================================== */
+
+/* Semantic list usage */
+/* BEST: Proper HTML structure */
+/* .semantic-ordered { */
+    /* Use <ol> for sequential items */
+/* } */
+
+/* .semantic-unordered { */
+    /* Use <ul> for non-sequential items */
+/* } */
+
+/* High contrast markers */
+/* GOOD: Better visibility */
+.high-contrast li::marker {
+    color: #000000;                   /* High contrast */
+    font-weight: bold;
+}
+
+/* Screen reader friendly */
+/* ADVANCED: Additional context for assistive tech */
+.screen-reader-friendly li::before {
+    content: 'List item ' counter(list-item) ': ';
+    position: absolute;
+    left: -10000px;                   /* Hide visually */
+    top: auto;
+}
+
+/* ===========================================
+   PERFORMANCE OPTIMIZATION
+   ===========================================
+
+   List styling choices that impact performance.
+
+   BEST PRACTICES:
+   - Use CSS-generated markers when possible
+   - Optimize custom marker images
+   - Minimize DOM manipulation
+   - Consider rendering performance
+   =========================================== */
+
+/* CSS-generated markers - No HTTP requests */
+/* BEST: Fast, reliable */
+.css-marker li {
+    list-style-type: none;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.css-marker li::before {
+    content: '▸';                     /* Unicode character */
+    position: absolute;
+    left: 0;
+    color: #007acc;
+}
+
+/* Optimized images */
+/* GOOD: Fast loading markers */
+.optimized-marker {
+    list-style-image: url('marker.svg'); /* SVG preferred */
+    list-style-type: disc;             /* Fallback */
+}
+
+/* ===========================================
+   CROSS-BROWSER COMPATIBILITY
+   ===========================================
+
+   List styling support across browsers.
+
+   BEST PRACTICES:
+   - Provide fallbacks for ::marker pseudo-element
+   - Test custom markers across browsers
+   - Use vendor prefixes when necessary
+   - Progressive enhancement approach
+   =========================================== */
+
+/* ::marker pseudo-element support */
+/* ADVANCED: Modern marker styling */
+.modern-marker li::marker {
+    color: #007acc;
+    font-size: 1.2em;
+    content: '→ ';                    /* Custom marker */
+}
+
+/* Fallback for older browsers */
+/* BEST: Graceful degradation */
+.fallback-marker {
+    list-style-type: disc;             /* Basic fallback */
+}
+
+.fallback-marker li::marker {
+    color: #007acc;                   /* Enhanced for modern browsers */
+}
+
+/* ===========================================
+   LIST STYLING PATTERNS
+   ===========================================
+
+   Common list styling patterns and use cases.
+
+   BEST PRACTICES:
+   - Choose patterns based on content type
+   - Maintain consistency within projects
+   - Consider user experience
+   - Test with real content
+   =========================================== */
+
+/* Navigation menu */
+/* BEST: Clean, accessible navigation */
+.nav-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-list li {
+    display: inline-block;
+}
+
+/* Breadcrumb navigation */
+/* GOOD: Hierarchical navigation */
+.breadcrumb {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb li {
+    display: inline;
+}
+
+.breadcrumb li:not(:last-child)::after {
+    content: ' / ';
+    color: #666;
+}
+
+/* Feature list */
+/* ADVANCED: Highlighted features */
+.feature-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.feature-list li {
+    position: relative;
+    padding: 1rem 0 1rem 2rem;
+    border-left: 3px solid #007acc;
+    margin-bottom: 1rem;
+}
+
+.feature-list li::before {
+    content: '✓';
+    position: absolute;
+    left: -0.5rem;
+    top: 1rem;
+    background: white;
+    color: #007acc;
+    border-radius: 50%;
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+/* ===========================================
+   DEBUGGING AND TESTING
+   ===========================================
+
+   Tools and techniques for list debugging.
+
+   BEST PRACTICES:
+   - Use browser dev tools to inspect list structure
+   - Test marker positioning with different content
+   - Verify accessibility with screen readers
+   - Check cross-browser consistency
+   =========================================== */
+
+/* Debug list structure - Development only */
+/* GOOD: Visual debugging */
+.debug-list li {
+    border: 1px solid red;
+    margin: 2px;
+    padding: 2px;
+}
+
+.debug-list li::before {
+    content: '[DEBUG] ';
+    color: red;
+    font-size: 10px;
+}
+
+/* ===========================================
+   CONCLUSION
+   ===========================================
+
+   CSS list properties provide flexible control over list appearance.
+   Choose appropriate markers and positioning for your content.
+
+   KEY TAKEAWAYS:
+   - Use semantic HTML for proper structure
+   - Choose markers based on content hierarchy
+   - Prefer inside position for better text flow
+   - Provide fallbacks for custom markers
+   - Consider accessibility and performance
+   - Test across browsers and devices
+   =========================================== */

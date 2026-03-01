@@ -1,0 +1,581 @@
+/* ===========================================
+   CSS UNITS - ADVANCED GUIDE
+   ===========================================
+
+   CSS units define measurements for properties like width, height,
+   margin, padding, font-size, etc. Understanding units is crucial
+   for responsive, maintainable, and performant CSS.
+
+   UNIT CATEGORIES:
+   1. Absolute Units (px, cm, mm, in, pt, pc)
+   2. Relative Units (em, rem, ex, ch)
+   3. Viewport Units (vw, vh, vmin, vmax)
+   4. Container Units (cqw, cqh, cqi, cqb, cqmin, cqmax)
+   5. Angle Units (deg, rad, grad, turn)
+   6. Time Units (s, ms)
+   7. Frequency Units (Hz, kHz)
+   8. Resolution Units (dpi, dpcm, dppx)
+
+   BEST PRACTICES:
+   - Use relative units for responsive design
+   - Prefer rem for font sizes, em for spacing within components
+   - Use px for borders and small details
+   - Combine units with calc() for complex layouts
+   - Test across devices and zoom levels
+   - Consider accessibility (zoom, font preferences)
+   =========================================== */
+
+/* ===========================================
+   1. ABSOLUTE UNITS
+   ===========================================
+
+   Absolute units are fixed measurements that don't change based
+   on other elements or viewport. Use sparingly in modern web design.
+
+   BEST PRACTICES:
+   - Use px for borders, outlines, and small UI elements
+   - Avoid for text sizing (not accessible)
+   - Good for print stylesheets
+   - Not responsive - avoid for layout dimensions
+   =========================================== */
+
+/* Pixels (px) - Most common absolute unit */
+/* BEST: Borders, small spacing, UI elements */
+/* GOOD: Consistent across devices, easy to understand */
+/* AVOID: Font sizes, large spacing (not responsive) */
+.absolute-example {
+    border: 1px solid #333;           /* Perfect for borders */
+    outline: 2px solid #007acc;       /* Good for focus indicators */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Small shadows */
+    width: 200px;                     /* Fixed width - use carefully */
+}
+
+/* Centimeters (cm), Millimeters (mm), Inches (in) */
+/* BEST: Print stylesheets, physical measurements */
+/* AVOID: Screen design (inconsistent rendering) */
+@media print {
+    .print-document {
+        width: 21cm;                  /* A4 width */
+        height: 29.7cm;               /* A4 height */
+        margin: 2.5cm;                /* Standard margins */
+        font-size: 12pt;              /* Print-friendly size */
+    }
+}
+
+/* Points (pt), Picas (pc) - Typography units */
+/* BEST: Print typography (1pt = 1/72 inch) */
+/* GOOD: Desktop publishing, but rare in web */
+.typography-print {
+    font-size: 12pt;                  /* Standard print size */
+    line-height: 1.2;                 /* Relative to font-size */
+    margin-bottom: 1pc;               /* 1 pica = 12 points */
+}
+
+/* ===========================================
+   2. RELATIVE UNITS
+   ===========================================
+
+   Relative units scale based on parent elements or root font-size.
+   Essential for responsive and accessible design.
+
+   BEST PRACTICES:
+   - Use rem for global sizing (fonts, spacing)
+   - Use em for component-relative sizing
+   - Set root font-size for consistent scaling
+   - Consider user font preferences
+   =========================================== */
+
+/* Root EM (rem) - Relative to root element font-size */
+/* BEST: Font sizes, global spacing, component sizing */
+/* ADVANTAGE: Consistent scaling, accessible */
+html {
+    font-size: 16px;                  /* Base size, can be adjusted */
+}
+
+.global-sizing {
+    font-size: 1rem;                  /* 16px */
+    padding: 1.5rem;                  /* 24px */
+    margin-bottom: 2rem;              /* 32px */
+}
+
+.large-text {
+    font-size: 1.25rem;               /* 20px */
+}
+
+.small-text {
+    font-size: 0.875rem;              /* 14px */
+}
+
+/* EM - Relative to parent element font-size */
+/* BEST: Component spacing, nested elements */
+/* GOOD: Contextual sizing within components */
+.component {
+    font-size: 1rem;                  /* Inherits from root */
+}
+
+.component__title {
+    font-size: 1.5em;                 /* 1.5x parent = 24px */
+    margin-bottom: 0.5em;             /* 0.5x title = 12px */
+}
+
+.component__text {
+    font-size: 0.9em;                 /* 0.9x component = 14.4px */
+    line-height: 1.4em;               /* 1.4x text size */
+}
+
+/* EX and CH - Font-relative units */
+/* BEST: Precise typography control */
+/* ex: height of lowercase 'x', ch: width of '0' */
+.typography-precision {
+    margin-bottom: 1ex;               /* Height of 'x' */
+    width: 20ch;                      /* Width of 20 '0's */
+    max-width: 60ch;                  /* Readable line length */
+}
+
+/* ===========================================
+   3. VIEWPORT UNITS
+   ===========================================
+
+   Viewport units are relative to the viewport dimensions.
+   Perfect for full-screen layouts and responsive design.
+
+   BEST PRACTICES:
+   - Use for hero sections, full-screen elements
+   - Combine with calc() for better control
+   - Test on mobile (address bar affects vh)
+   - Consider vh units carefully (mobile browsers)
+   =========================================== */
+
+/* Viewport Width (vw) and Height (vh) */
+/* BEST: Full-screen sections, responsive typography */
+.hero-section {
+    height: 100vh;                    /* Full viewport height */
+    width: 100vw;                     /* Full viewport width */
+    background: linear-gradient(45deg, #007acc, #00d4aa);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-title {
+    font-size: 8vw;                   /* Scales with viewport */
+    color: white;
+    text-align: center;
+    max-width: 80vw;                  /* Prevent overflow */
+}
+
+/* Viewport Minimum/Maximum (vmin, vmax) */
+/* BEST: Square elements, responsive across orientations */
+.square-element {
+    width: 50vmin;                    /* Smaller of vw/vh */
+    height: 50vmin;                   /* Always square */
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Responsive typography with viewport units */
+@media (max-width: 768px) {
+    .responsive-text {
+        font-size: calc(16px + 2vw);   /* Min 16px, scales up */
+    }
+}
+
+/* ===========================================
+   4. CONTAINER UNITS (CSS CONTAINER QUERIES)
+   ===========================================
+
+   Container units are relative to the nearest container.
+   Requires container queries support.
+
+   BEST PRACTICES:
+   - Use for component-based responsive design
+   - Define containers with container-type
+   - Combine with traditional units
+   - Progressive enhancement approach
+   =========================================== */
+
+/* Container setup - Required for container units */
+.card-container {
+    container-type: inline-size;       /* Enable container queries */
+    container-name: card-grid;         /* Optional naming */
+}
+
+/* Container Query Width/Height (cqw, cqh) */
+/* BEST: Component-responsive design */
+@container card-grid (min-width: 400px) {
+    .card {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2cqw;                     /* 2% of container width */
+    }
+}
+
+.card__image {
+    width: 100cqw;                    /* Full container width */
+    height: 50cqh;                    /* Half container height */
+}
+
+/* Container Inline/Block (cqi, cqb) */
+/* ADVANCED: Writing mode aware */
+.flexible-layout {
+    padding: 2cqi;                    /* Inline direction padding */
+    margin: 1cqb;                     /* Block direction margin */
+}
+
+/* Container Min/Max (cqmin, cqmax) */
+/* BEST: Square elements in containers */
+.aspect-square {
+    width: 100cqmin;                  /* Smaller dimension */
+    height: 100cqmin;                 /* Always square */
+    background-color: #007acc;
+}
+
+/* ===========================================
+   5. ANGLE UNITS
+   ===========================================
+
+   Angle units for rotations, gradients, and transforms.
+
+   BEST PRACTICES:
+   - Use deg for most cases (intuitive)
+   - rad for mathematical calculations
+   - turn for full rotations
+   - grad rarely used in practice
+   =========================================== */
+
+/* Degrees (deg) - Most common */
+/* BEST: Intuitive, 0-360 range */
+.rotated-element {
+    transform: rotate(45deg);
+}
+
+.gradient-background {
+    background: linear-gradient(135deg, #007acc, #00d4aa);
+}
+
+/* Radians (rad) - Mathematical */
+/* GOOD: For calculations, π ≈ 3.14159 */
+.math-rotation {
+    transform: rotate(1.5708rad);     /* 90 degrees */
+}
+
+/* Turns (turn) - Full rotations */
+/* BEST: Animations, full circles */
+.spinning-element {
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0turn); }
+    to { transform: rotate(1turn); }   /* Full rotation */
+}
+
+/* Gradians (grad) - 400-unit circle */
+/* RARE: Legacy support, not commonly used */
+.grad-example {
+    transform: rotate(100grad);        /* 90 degrees */
+}
+
+/* ===========================================
+   6. TIME UNITS
+   ===========================================
+
+   Time units for animations and transitions.
+
+   BEST PRACTICES:
+   - Use s for longer durations
+   - Use ms for quick transitions
+   - Consider performance (60fps = 16.67ms)
+   - Test on lower-end devices
+   =========================================== */
+
+/* Seconds (s) and Milliseconds (ms) */
+/* BEST: Match animation duration to purpose */
+.smooth-transition {
+    transition: all 0.3s ease-in-out;  /* 300ms - smooth */
+}
+
+.quick-hover {
+    transition: color 150ms ease;      /* 150ms - snappy */
+}
+
+.bounce-animation {
+    animation: bounce 0.6s ease-in-out; /* 600ms - noticeable */
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* ===========================================
+   7. FREQUENCY UNITS
+   ===========================================
+
+   Frequency units for aural stylesheets (rarely used).
+
+   BEST PRACTICES:
+   - Primarily for screen readers
+   - Limited browser support
+   - Use modern speech synthesis APIs instead
+   =========================================== */
+
+@media speech {
+    /* .aural-content { */
+        /* voice-pitch: 120Hz;            Speaking pitch */
+        /* voice-range: 6kHz;             Pitch variation */
+    /* } */
+}
+
+/* ===========================================
+   8. RESOLUTION UNITS
+   ===========================================
+
+   Resolution units for media queries and high-DPI displays.
+
+   BEST PRACTICES:
+   - Use dppx for most cases
+   - Consider device pixel ratios
+   - Test on various display densities
+   =========================================== */
+
+/* Dots per pixel (dppx) - Most common */
+/* BEST: High-DPI media queries */
+@media (min-resolution: 2dppx) {
+    .high-dpi-image {
+        background-image: url('image@2x.png');
+    }
+}
+
+@media (min-resolution: 3dppx) {
+    .ultra-high-dpi {
+        background-image: url('image@3x.png');
+    }
+}
+
+/* Dots per inch/cm (dpi, dpcm) */
+/* GOOD: Print styles, specific devices */
+@media print and (min-resolution: 300dpi) {
+    .print-quality {
+        background-image: url('high-res-print.png');
+    }
+}
+
+/* ===========================================
+   ADVANCED UNIT TECHNIQUES
+   ===========================================
+
+   Combining units with functions for powerful layouts.
+
+   BEST PRACTICES:
+   - Use calc() for mixed unit calculations
+   - clamp() for responsive sizing
+   - min()/max() for constraints
+   - Combine viewport and relative units
+   =========================================== */
+
+/* calc() - Mathematical calculations */
+/* BEST: Mixed units, complex layouts */
+.responsive-layout {
+    width: calc(100vw - 2rem);         /* Full width minus margins */
+    max-width: calc(1200px + 4rem);    /* Container with padding */
+    padding: calc(1rem + 2vw);         /* Responsive padding */
+}
+
+/* clamp() - Responsive sizing with constraints */
+/* BEST: Fluid typography, responsive spacing */
+.fluid-typography {
+    font-size: clamp(1rem, 2.5vw, 2rem); /* Min 16px, max 32px */
+}
+
+.responsive-spacing {
+    padding: clamp(1rem, 5vw, 3rem);   /* Min 16px, max 48px */
+}
+
+/* min() and max() - Conditional sizing */
+/* GOOD: Responsive without media queries */
+.adaptive-width {
+    width: min(100%, 800px);           /* Max 800px */
+    margin: 0 auto;
+}
+
+.flexible-height {
+    height: max(200px, 50vh);          /* At least 200px or 50vh */
+}
+
+/* ===========================================
+   RESPONSIVE DESIGN PATTERNS
+   ===========================================
+
+   Unit combinations for modern responsive design.
+
+   BEST PRACTICES:
+   - Mobile-first approach
+   - Progressive enhancement
+   - Test across breakpoints
+   - Consider content hierarchy
+   =========================================== */
+
+/* Fluid typography scale */
+:root {
+    --text-xs: clamp(0.75rem, 2vw, 0.875rem);
+    --text-sm: clamp(0.875rem, 2.5vw, 1rem);
+    --text-base: clamp(1rem, 3vw, 1.125rem);
+    --text-lg: clamp(1.125rem, 4vw, 1.25rem);
+    --text-xl: clamp(1.25rem, 5vw, 1.5rem);
+}
+
+.typography-scale {
+    font-size: var(--text-base);
+}
+
+.heading-large {
+    font-size: var(--text-xl);
+}
+
+/* Responsive spacing system */
+:root {
+    --space-xs: clamp(0.5rem, 1vw, 0.75rem);
+    --space-sm: clamp(0.75rem, 2vw, 1rem);
+    --space-md: clamp(1rem, 3vw, 1.5rem);
+    --space-lg: clamp(1.5rem, 4vw, 2rem);
+    --space-xl: clamp(2rem, 6vw, 3rem);
+}
+
+.card-spacing {
+    padding: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+/* ===========================================
+   ACCESSIBILITY CONSIDERATIONS
+   ===========================================
+
+   Units that respect user preferences and accessibility.
+
+   BEST PRACTICES:
+   - Respect user's font size preferences
+   - Ensure minimum touch targets
+   - Test with zoom (200% minimum)
+   - Consider motion preferences
+   =========================================== */
+
+/* Respect user font preferences */
+.respect-user-font {
+    font-size: 1rem;                   /* Respects user setting */
+    line-height: 1.5;                  /* Adequate for readability */
+}
+
+/* Minimum touch targets */
+.touch-friendly {
+    min-height: 44px;                  /* WCAG AA requirement */
+    min-width: 44px;
+    padding: 0.75rem 1rem;
+}
+
+/* Zoom-friendly layouts */
+.zoom-friendly {
+    width: min(100%, 1200px);          /* Doesn't break on zoom */
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* ===========================================
+   PERFORMANCE OPTIMIZATION
+   ===========================================
+
+   Unit choices that impact rendering performance.
+
+   BEST PRACTICES:
+   - Avoid layout-triggering units in animations
+   - Use transform for movement animations
+   - Minimize reflows and repaints
+   - Test on low-end devices
+   =========================================== */
+
+/* Performance-friendly animations */
+.smooth-move {
+    transform: translateX(0);           /* Uses GPU */
+    transition: transform 0.3s ease;   /* No layout trigger */
+}
+
+/* Avoid performance issues */
+.avoid-reflow {
+    /* AVOID: width/height in animations */
+    /* GOOD: transform, opacity */
+    transition: opacity 0.2s ease;
+}
+
+/* ===========================================
+   CROSS-BROWSER COMPATIBILITY
+   ===========================================
+
+   Unit support across browsers and fallbacks.
+
+   BEST PRACTICES:
+   - Provide fallbacks for newer units
+   - Progressive enhancement approach
+   - Test on target browsers
+   - Use feature queries when possible
+   =========================================== */
+
+/* Fallbacks for newer units */
+.modern-units {
+    font-size: 1rem;                   /* Fallback */
+    font-size: clamp(1rem, 2.5vw, 2rem); /* Modern */
+}
+
+.container-fallback {
+    width: 100%;                       /* Fallback */
+    width: 100cqw;                     /* Modern (if supported) */
+}
+
+/* Feature query for container units */
+@supports (container-type: inline-size) {
+    .container-aware {
+        container-type: inline-size;
+    }
+}
+
+/* ===========================================
+   DEBUGGING AND TESTING
+   ===========================================
+
+   Tools and techniques for unit debugging.
+
+   BEST PRACTICES:
+   - Use browser dev tools for computed values
+   - Test on various screen sizes
+   - Check zoom levels (200%, 400%)
+   - Validate with accessibility tools
+   =========================================== */
+
+/* Debug units - Add to development CSS */
+.debug-units::before {
+    content: "Font: " attr(data-font-size) " | Container: " attr(data-container-width);
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(255, 0, 0, 0.8);
+    color: white;
+    padding: 5px;
+    font-size: 12px;
+    z-index: 9999;
+}
+
+/* ===========================================
+   CONCLUSION
+   ===========================================
+
+   CSS units are fundamental to responsive, accessible design.
+   Choose units based on context and requirements.
+
+   KEY TAKEAWAYS:
+   - Relative units for responsive design
+   - Absolute units for precision needs
+   - Modern units with fallbacks
+   - Performance and accessibility first
+   - Test across devices and conditions
+   =========================================== */
