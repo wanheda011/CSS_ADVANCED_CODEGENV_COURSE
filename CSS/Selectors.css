@@ -540,8 +540,8 @@ input:focus-visible {
 /* Targets: Primary navigation items that are active or have dropdowns */
 .nav__item.is-active,
 .nav__item:has(.dropdown) {
-    /* background-color: #007acc;
-    color: white; */
+    background-color: #007acc;
+    color: white;
 }
 
 /* Scalable component structure */
@@ -566,8 +566,9 @@ input:focus-visible {
 
 /* :is() - Matches any of the selectors */
 /* BEST: Reduces repetition, handles specificity */
-:is(h1, h2, h3, h4).heading {
-   
+:is(h1, h2, h3, h4, p).heading {
+   background-color: violet;
+   color: white;
 }
 
 /* Equivalent to: h1.heading, h2.heading, h3.heading, h4.heading */
@@ -575,6 +576,9 @@ input:focus-visible {
 /* :where() - Similar to :is() but zero specificity */
 /* ADVANCED: Specificity control */
 :where(.theme-dark) .text {
+    background-color: black;
+    color: gray;
+    font-size: 2rem;
     
 }
 
