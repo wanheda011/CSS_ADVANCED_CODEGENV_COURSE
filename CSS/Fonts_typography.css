@@ -1,21 +1,28 @@
-/* ===========================================
+@import url('https://fonts.googleapis.com/css2?family=Datatype:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik+Storm&display=swap');/* ===========================================
    CSS FONTS AND TYPOGRAPHY - ADVANCED GUIDE
    ===========================================
 
-   Typography is crucial for readability, accessibility, and user experience.
-   CSS provides comprehensive control over text appearance and layout.
+   Typography is crucial for readability, 
+   accessibility, and user experience.
+   CSS provides comprehensive control over 
+   text appearance and layout.
 
    TYPOGRAPHY PROPERTIES COVERED:
-   1. Font Family - Typeface selection and fallbacks
-   2. Font Size - Text scaling and responsive sizing
+   1. Font Family - Typeface selection and 
+   fallbacks
+   2. Font Size - Text scaling and responsive 
+   sizing
    3. Font Weight - Text thickness and boldness
    4. Font Style - Italic and oblique variations
    5. Font Variant - Small caps and other variants
    6. Line Height - Vertical spacing between lines
-   7. Letter Spacing - Horizontal spacing between characters
-   8. Word Spacing - Horizontal spacing between words
+   7. Letter Spacing - Horizontal spacing between 
+   characters
+   8. Word Spacing - Horizontal spacing between
+    words
    9. Text Align - Horizontal text alignment
-   10. Text Decoration - Underlines, overlines, strikethrough
+   10. Text Decoration - Underlines, overlines, 
+   strikethrough
    11. Text Transform - Case transformations
    12. Text Shadow - Text drop shadows and effects
 
@@ -26,6 +33,125 @@
    - Consider accessibility (font size, line height)
    - Optimize font loading performance
    =========================================== */
+
+#main_heading {
+
+    font-family:"Poppins", sans-serif;
+    font-size: 3rem;
+    font-weight: lighter;
+    font-style: normal;
+    /* font-variant: small-caps; */
+    text-align: center;
+    text-decoration: overline;
+    text-transform: capitalize;
+    /* text-shadow: -115px 20px 5px red; */
+
+
+}
+
+#para1 {
+
+    font-size:xx-large;
+    line-height: 4rem;
+    /* word-spacing: 1rem;
+    letter-spacing: 3rem; */
+    /* text-align: center; */
+    text-align: justify;
+    text-transform: capitalize;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* ===========================================
    1. FONT FAMILY - TYPEFACE SELECTION
@@ -112,7 +238,7 @@ html {
 .text-lg { font-size: 1.125rem; }     /* 18px */
 .text-xl { font-size: 1.25rem; }      /* 20px */
 .text-2xl { font-size: 1.5rem; }      /* 24px */
-.text-3xl { font-size: 1.875rem; }    /* 30px */
+.text-3xl { font-size: 10rem; }    /* 30px */
 
 /* Fluid typography with clamp() */
 /* ADVANCED: Responsive without media queries */

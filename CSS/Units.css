@@ -2,9 +2,12 @@
    CSS UNITS - ADVANCED GUIDE
    ===========================================
 
-   CSS units define measurements for properties like width, height,
-   margin, padding, font-size, etc. Understanding units is crucial
-   for responsive, maintainable, and performant CSS.
+   CSS units define measurements for properties 
+   like width, height,
+   margin, padding, font-size, etc. 
+   Understanding units is crucial
+   for responsive, maintainable, and performant
+    CSS.
 
    UNIT CATEGORIES:
    1. Absolute Units (px, cm, mm, in, pt, pc)
@@ -16,66 +19,61 @@
    7. Frequency Units (Hz, kHz)
    8. Resolution Units (dpi, dpcm, dppx)
 
-   BEST PRACTICES:
-   - Use relative units for responsive design
-   - Prefer rem for font sizes, em for spacing within components
-   - Use px for borders and small details
-   - Combine units with calc() for complex layouts
-   - Test across devices and zoom levels
-   - Consider accessibility (zoom, font preferences)
-   =========================================== */
+ */
+
+
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+ }
 
 /* ===========================================
    1. ABSOLUTE UNITS
    ===========================================
 
-   Absolute units are fixed measurements that don't change based
-   on other elements or viewport. Use sparingly in modern web design.
+   absolute units represent fixed sizes. 
+   Their value does not change based on 
+   screen size or parent elements.
 
-   BEST PRACTICES:
-   - Use px for borders, outlines, and small UI elements
-   - Avoid for text sizing (not accessible)
-   - Good for print stylesheets
-   - Not responsive - avoid for layout dimensions
    =========================================== */
 
 /* Pixels (px) - Most common absolute unit */
 /* BEST: Borders, small spacing, UI elements */
-/* GOOD: Consistent across devices, easy to understand */
-/* AVOID: Font sizes, large spacing (not responsive) */
-.absolute-example {
-    border: 1px solid #333;           /* Perfect for borders */
-    outline: 2px solid #007acc;       /* Good for focus indicators */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Small shadows */
-    width: 200px;                     /* Fixed width - use carefully */
+/* GOOD: Consistent across devices, 
+easy to understand */
+/* AVOID: Font sizes, 
+large spacing (not responsive) */
+
+#first_heading {
+    font-size: 30px;
+    background-color: blueviolet;
 }
+
 
 /* Centimeters (cm), Millimeters (mm), Inches (in) */
 /* BEST: Print stylesheets, physical measurements */
 /* AVOID: Screen design (inconsistent rendering) */
+
 @media print {
-    .print-document {
-        width: 21cm;                  /* A4 width */
-        height: 29.7cm;               /* A4 height */
-        margin: 2.5cm;                /* Standard margins */
-        font-size: 12pt;              /* Print-friendly size */
+    #first_heading {
+        font-size: 5pc;
     }
 }
+
+
 
 /* Points (pt), Picas (pc) - Typography units */
 /* BEST: Print typography (1pt = 1/72 inch) */
 /* GOOD: Desktop publishing, but rare in web */
-.typography-print {
-    font-size: 12pt;                  /* Standard print size */
-    line-height: 1.2;                 /* Relative to font-size */
-    margin-bottom: 1pc;               /* 1 pica = 12 points */
-}
+
 
 /* ===========================================
    2. RELATIVE UNITS
    ===========================================
 
-   Relative units scale based on parent elements or root font-size.
+   Relative units scale based on parent elements 
+   or root font-size.
    Essential for responsive and accessible design.
 
    BEST PRACTICES:
@@ -88,98 +86,49 @@
 /* Root EM (rem) - Relative to root element font-size */
 /* BEST: Font sizes, global spacing, component sizing */
 /* ADVANTAGE: Consistent scaling, accessible */
+
 html {
-    font-size: 16px;                  /* Base size, can be adjusted */
+    font-size: 32px;
 }
 
-.global-sizing {
-    font-size: 1rem;                  /* 16px */
-    padding: 1.5rem;                  /* 24px */
-    margin-bottom: 2rem;              /* 32px */
+/* root * n */
+
+#Para-1 {
+    font-size: 2rem;
 }
 
-.large-text {
-    font-size: 1.25rem;               /* 20px */
-}
-
-.small-text {
-    font-size: 0.875rem;              /* 14px */
-}
 
 /* EM - Relative to parent element font-size */
 /* BEST: Component spacing, nested elements */
 /* GOOD: Contextual sizing within components */
-.component {
-    font-size: 1rem;                  /* Inherits from root */
+
+
+#div_1 {
+    font-size: 20px;
 }
 
-.component__title {
-    font-size: 1.5em;                 /* 1.5x parent = 24px */
-    margin-bottom: 0.5em;             /* 0.5x title = 12px */
+#Para-2 {
+    font-size: 3em; 
 }
 
-.component__text {
-    font-size: 0.9em;                 /* 0.9x component = 14.4px */
-    line-height: 1.4em;               /* 1.4x text size */
-}
-
-/* EX and CH - Font-relative units */
-/* BEST: Precise typography control */
-/* ex: height of lowercase 'x', ch: width of '0' */
-.typography-precision {
-    margin-bottom: 1ex;               /* Height of 'x' */
-    width: 20ch;                      /* Width of 20 '0's */
-    max-width: 60ch;                  /* Readable line length */
-}
 
 /* ===========================================
    3. VIEWPORT UNITS
    ===========================================
 
-   Viewport units are relative to the viewport dimensions.
-   Perfect for full-screen layouts and responsive design.
-
-   BEST PRACTICES:
-   - Use for hero sections, full-screen elements
-   - Combine with calc() for better control
-   - Test on mobile (address bar affects vh)
-   - Consider vh units carefully (mobile browsers)
+   Viewport units are relative to the 
+   viewport dimensions.
+   Perfect for full-screen layouts and 
+   responsive design.
    =========================================== */
 
 /* Viewport Width (vw) and Height (vh) */
 /* BEST: Full-screen sections, responsive typography */
-.hero-section {
-    height: 100vh;                    /* Full viewport height */
-    width: 100vw;                     /* Full viewport width */
-    background: linear-gradient(45deg, #007acc, #00d4aa);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.hero-title {
-    font-size: 8vw;                   /* Scales with viewport */
-    color: white;
-    text-align: center;
-    max-width: 80vw;                  /* Prevent overflow */
-}
-
-/* Viewport Minimum/Maximum (vmin, vmax) */
-/* BEST: Square elements, responsive across orientations */
-.square-element {
-    width: 50vmin;                    /* Smaller of vw/vh */
-    height: 50vmin;                   /* Always square */
-    background-color: #f0f0f0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Responsive typography with viewport units */
-@media (max-width: 768px) {
-    .responsive-text {
-        font-size: calc(16px + 2vw);   /* Min 16px, scales up */
-    }
+#hero-section {
+    width: 100vw;
+    height: 100vh;
+    background-color: darkcyan;
 }
 
 /* ===========================================
@@ -208,13 +157,18 @@ html {
     .card {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 2cqw;                     /* 2% of container width */
-    }
+        gap: 2cqw; 
+          background-color: darkred;                    /* 2% of container width */
+  
+        }
 }
 
 .card__image {
-    width: 100cqw;                    /* Full container width */
-    height: 50cqh;                    /* Half container height */
+    width: 50cqw;                    /* Full container width */
+    height: 50cqh;  
+      padding: 1cqi; 
+      background-color: darkcyan;                 /* Half container height */
+  
 }
 
 /* Container Inline/Block (cqi, cqb) */
@@ -238,27 +192,23 @@ html {
 
    Angle units for rotations, gradients, and transforms.
 
-   BEST PRACTICES:
-   - Use deg for most cases (intuitive)
-   - rad for mathematical calculations
-   - turn for full rotations
-   - grad rarely used in practice
    =========================================== */
 
 /* Degrees (deg) - Most common */
 /* BEST: Intuitive, 0-360 range */
-.rotated-element {
-    transform: rotate(45deg);
-}
 
-.gradient-background {
-    background: linear-gradient(135deg, #007acc, #00d4aa);
+#card-1 {
+    width: 200px;
+    height: 200px;
+    background-color: darkblue;
+    text-align: center;
+    transform: rotate(3.145rad);
 }
 
 /* Radians (rad) - Mathematical */
 /* GOOD: For calculations, π ≈ 3.14159 */
 .math-rotation {
-    transform: rotate(1.5708rad);     /* 90 degrees */
+    transform: rotate(2.5rad);     /* 90 degrees */
 }
 
 /* Turns (turn) - Full rotations */
@@ -329,39 +279,6 @@ html {
     /* } */
 }
 
-/* ===========================================
-   8. RESOLUTION UNITS
-   ===========================================
-
-   Resolution units for media queries and high-DPI displays.
-
-   BEST PRACTICES:
-   - Use dppx for most cases
-   - Consider device pixel ratios
-   - Test on various display densities
-   =========================================== */
-
-/* Dots per pixel (dppx) - Most common */
-/* BEST: High-DPI media queries */
-@media (min-resolution: 2dppx) {
-    .high-dpi-image {
-        background-image: url('image@2x.png');
-    }
-}
-
-@media (min-resolution: 3dppx) {
-    .ultra-high-dpi {
-        background-image: url('image@3x.png');
-    }
-}
-
-/* Dots per inch/cm (dpi, dpcm) */
-/* GOOD: Print styles, specific devices */
-@media print and (min-resolution: 300dpi) {
-    .print-quality {
-        background-image: url('high-res-print.png');
-    }
-}
 
 /* ===========================================
    ADVANCED UNIT TECHNIQUES

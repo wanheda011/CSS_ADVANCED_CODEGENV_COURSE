@@ -2,9 +2,12 @@
    CSS COLOR METHODS - ADVANCED GUIDE
    ===========================================
 
-   CSS provides multiple ways to define colors, each with different
-   advantages for different use cases. Understanding color methods
-   is essential for maintainable, accessible, and performant CSS.
+   CSS provides multiple ways to define colors,
+   each with different
+   advantages for different use cases. Understanding 
+   color methods
+   is essential for maintainable, accessible, and
+   performant CSS.
 
    COLOR METHODS COVERED:
    1. Named Colors (140+ predefined names)
@@ -27,18 +30,30 @@
    1. NAMED COLORS
    ===========================================
 
-   Named colors are predefined color keywords. CSS provides 140+
-   named colors including basic colors, extended colors, and special values.
+   Named colors are predefined color keywords.
+   CSS provides 140+
+   named colors including basic colors, extended 
+   colors, and special values.
 
    BEST PRACTICES:
    - Use for quick prototyping and simple designs
-   - Good for semantic color names (transparent, currentColor)
+   - Good for semantic color names 
+   (transparent, currentColor)
    - Avoid for precise color matching
    - Limited palette - not suitable for complex designs
    =========================================== */
 
 /* Basic named colors - 16 standard web colors */
 /* GOOD: Simple, readable, universally supported */
+
+#Main-Heading {
+
+
+    color: darkmagenta;
+    background-color: black;
+
+}
+
 .named-basic {
     color: red;                        /* Pure red */
     background-color: blue;            /* Pure blue */
@@ -85,6 +100,16 @@
 
 /* 6-digit hexadecimal - Full precision */
 /* BEST: Brand colors, precise color matching */
+/* 000000 - ffffff */
+#para-1{
+
+    color: #00f;
+    background-color: #000000;
+    padding: 20px;
+
+}
+
+
 .hex-full {
     color: #ff0000;                    /* Pure red */
     background-color: #007acc;         /* Professional blue */
@@ -101,7 +126,8 @@
 }
 
 /* 8-digit with alpha - Transparency included */
-/* BEST: Built-in transparency, no separate alpha property needed */
+/* BEST: Built-in transparency, no separate 
+alpha property needed */
 .hex-alpha {
     color: #ff0000ff;                  /* Red with full opacity */
     background-color: #007acc80;       /* Blue with 50% opacity */
@@ -137,6 +163,14 @@
 
 /* Traditional comma-separated RGB */
 /* GOOD: Widely supported, familiar syntax */
+
+#Sub-heading {
+
+    color: rgb(255 0 0 / 0.8);
+    background-color: rgba(0, 255, 0, 0.6);
+
+}
+
 .rgb-traditional {
     color: rgb(255, 0, 0);             /* Pure red */
     background-color: rgb(0, 122, 204); /* Professional blue */
@@ -192,6 +226,15 @@
 
 /* HSL color definitions */
 /* BEST: Intuitive color creation and manipulation */
+
+
+#heading {
+    color: hsl(0, 76%, 95%);
+    background-color: hsla(0, 100%, 50%, 0.7)
+}
+
+
+
 .hsl-colors {
     color: hsl(0, 100%, 50%);          /* Pure red */
     background-color: hsl(207, 90%, 54%); /* Professional blue */
@@ -246,10 +289,10 @@
 
 /* HWB color definitions */
 /* BEST: Intuitive color mixing, good for palettes */
-.hwb-colors {
+#heading {
     color: hwb(0 0% 0%);               /* Pure red */
     background-color: hwb(207 20% 25%); /* Professional blue */
-    border-color: hwb(142 15% 40%);   /* Success green */
+    border: 5px solid hwb(142 0% 76%);   /* Success green */
 }
 
 /* HWB with alpha */
@@ -290,6 +333,11 @@
     color: lab(50% 40 59);             /* Vibrant color */
     background-color: lab(70% -30 40); /* Teal-like */
     border-color: lab(30% 60 -40);    /* Purple */
+}
+
+#footer-heading {
+
+    color: #3c096c;
 }
 
 /* LCH Color Space - Cylindrical LAB */

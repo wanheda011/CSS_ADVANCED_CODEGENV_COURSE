@@ -2,14 +2,17 @@
    CSS BOX MODEL - ADVANCED GUIDE
    ===========================================
 
-   The CSS box model describes how elements are rendered as rectangular boxes.
-   Understanding the box model is fundamental to CSS layout and spacing.
+   The CSS box model describes how elements are 
+   rendered as rectangular boxes.
+   Understanding the box model is fundamental to
+    CSS layout and spacing.
 
    BOX MODEL COMPONENTS:
    1. Content - The actual content (text, images, etc.)
    2. Padding - Space between content and border
    3. Border - The boundary around padding
-   4. Outline - Visual boundary outside border (doesn't affect layout)
+   4. Outline - Visual boundary outside border 
+   (doesn't affect layout)
    5. Margin - Space outside the border
 
    DIMENSIONS:
@@ -24,12 +27,25 @@
    - Test across different content sizes
    =========================================== */
 
+   #Main_btn1{
+    background-color: darkblue;
+    color: white;
+   }
+
+
+   #Main_btn2 {
+    /* margin: 20px 40px 30px 10px; */
+    /* margin-inline: 50px; */
+    /* margin-block: 20px; */
+   }
 /* ===========================================
    1. MARGIN - OUTER SPACING
    ===========================================
 
-   Margin creates space outside the element's border.
-   Margins are transparent and don't have background colors.
+   Margin creates space outside the
+    element's border.
+   Margins are transparent and don't 
+   have background colors.
 
    SYNTAX:
    - margin: all
@@ -90,12 +106,21 @@
     z-index: 1;
 }
 
+#Main_btn2  {
+    padding: 10px 30px;
+    /* background-color: darkred; */
+    /* color: white; */
+    
+}
+
 /* ===========================================
    2. PADDING - INNER SPACING
    ===========================================
 
-   Padding creates space between the element's content and its border.
-   Padding has the same background color as the element.
+   Padding creates space between the element's
+    content and its border.
+   Padding has the same background color as 
+   the element.
 
    SYNTAX: Same as margin
    - padding: all
@@ -141,11 +166,24 @@
     padding: clamp(1rem, 5vw, 3rem);  /* Fluid padding */
 }
 
+#Main_btn2 {
+    /* border-width: 2px ;
+    border-style: solid;
+    border-color: darkmagenta; */
+
+    /* outline: 5px solid darkgreen; */
+    border: 5px solid darkcyan;
+    width: 100px;
+    height: 100px;
+   
+}
+
 /* ===========================================
    3. BORDER - ELEMENT BOUNDARY
    ===========================================
 
-   Border creates a visible boundary around the element's padding.
+   Border creates a visible boundary around the element's 
+   padding.
    Borders can have width, style, and color.
 
    SYNTAX:
@@ -210,13 +248,16 @@
    4. OUTLINE - VISUAL BOUNDARY
    ===========================================
 
-   Outline creates a visual boundary outside the element's border.
-   Unlike borders, outlines don't affect the element's layout or dimensions.
+   Outline creates a visual boundary outside the 
+   element's border.
+   Unlike borders, outlines don't affect the element's 
+   layout or dimensions.
 
    SYNTAX:
    - outline: width style color
    - outline-width/style/color: value
-   - outline-offset: distance (space between outline and border)
+   - outline-offset: distance 
+   (space between outline and border)
 
    STYLES: Same as border (solid, dashed, dotted, etc.)
 
@@ -323,6 +364,10 @@
     height: min-content;              /* Minimum content height */
 }
 
+* {
+    box-sizing: border-box;
+}
+
 /* ===========================================
    BOX-SIZING - DIMENSION CALCULATION
    ===========================================
@@ -341,9 +386,6 @@
 
 /* Global box-sizing reset */
 /* BEST: Consistent sizing across all elements */
-*, *::before, *::after {
-    box-sizing: border-box;
-}
 
 /* Content-box example - Legacy behavior */
 /* AVOID: Unpredictable sizing */
