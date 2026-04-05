@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallax Effect</title>  
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        h1, h2 {
+            color: rgba(255, 255, 255, 0.527);
+        }
+
+        h1 {
+            font-size: 5rem;
+        }
+
+        h2 {
+            font-size: 3rem;
+        }
+
+
+        .card {
+            width: 100vw;
+            height: 100vh;
+            background-image: url("../Images/image.jpg"), linear-gradient(rgba(0,0,0,1));
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #section2 {
+            background-image: url("../Images/image2.jpg");
+            background-attachment: fixed;
+        }
+
+        #section3 {
+            background-image: url("../Images/image3.png");
+        }
+
+        #section4 {
+            background-image: url("../Images/Image4.png");
+            background-attachment: fixed;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div id="section1" class="card">
+        <h1>Welcome To Code Gen V</h1>
+        <h2>By, Ajaykumar Solanki</h2>
+    </div>
+    <div id="section2" class="card">
+        <h2>We are Provding a best css course.</h2>
+    </div>
+    <div id="section3" class="card">
+        <h2>Please Follow and Subscribe For More Video's</h2>
+    </div>
+    <div id="section4" class="card">
+        <h2>Please Like, Share and Subscribe</h2>
+    </div>
+
+</body>
+</html>

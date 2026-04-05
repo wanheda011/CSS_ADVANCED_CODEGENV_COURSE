@@ -1,0 +1,69 @@
+/* 
+| Position | Behavior                     |
+| -------- | ---------------------------- |
+| static   | Default                      |
+| relative | Moves from original position |
+| absolute | Positioned inside parent     |
+| fixed    | Fixed to screen              |
+| sticky   | Scroll + fixed combo         |
+
+
+*/
+
+#container {
+    width: 500px;
+    height: 500px;
+    border: 8px solid darkred;
+    position: relative;
+}
+
+.sub-container {
+    width: 100px;
+    height: 100px;
+    background-color: darkviolet;
+    color: white;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+
+
+#div2 {
+    position: absolute;
+    right: 0%;
+    top: 0%;
+   
+
+}
+
+#div3 {
+   position: absolute;
+   right: 0%;
+   bottom: 0%;
+
+}
+
+#div4 {
+    position: absolute;
+    /* left: 0; */
+    bottom: 0%;
+   
+
+}
+
+#div5 {
+   
+    position: absolute;
+    left: 40%;
+    top: 37%;
+
+}
+
+img {
+    width: 500px;
+    position: sticky;
+    right: 5%;
+    top: 30%;
+
+    
+}
